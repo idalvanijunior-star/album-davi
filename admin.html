@@ -62,6 +62,11 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid 
       <input id="data" type="date" required>
       <label for="mes">Mês do Davi</label>
       <select id="mes"></select>
+      <label for="secao">Onde mostrar?</label>
+<select id="secao">
+  <option value="galeria">Galeria</option>
+  <option value="momentos">Momentos</option>
+</select>
       <label for="leg">Legenda</label>
       <input id="leg" type="text" maxlength="80" placeholder="Meu sorriso mais lindo! ❤️" required>
       <button class="btn" id="bSalvar" type="submit">Salvar foto</button>
@@ -134,7 +139,12 @@ if(!temConfig){
       var caminho = Date.now() + ".jpg";
       var up = await sb.storage.from("fotos").upload(caminho, blob, { contentType: "image/jpeg" });
       if(up.error) throw new Error("Falha no envio: " + up.error.message);
-      var ins = await sb.from("fotos").insert({ caminho: caminho, legenda: $("leg").value.trim(), mes: parseInt($("mes").value, 10), data_foto: $("data").value });
+      var var ins = await sb.from("fotos").insert({
+  caminho: caminho,
+  legenda: $("leg").value.trim(),
+  mes: parseInt($("mes").value, 10),
+  data_foto: $("data").value,
+  secao: $("secao").value
       if(ins.error){ await sb.storage.from("fotos").remove([caminho]); throw new Error("Falha ao salvar: " + ins.error.message); }
       msg($("mFoto"), "Foto salva! 💙", "ok");
       $("arq").value = ""; $("leg").value = "";
