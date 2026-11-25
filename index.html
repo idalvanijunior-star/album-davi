@@ -3,362 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#d9eafa">
 <title>Diário do Davi Miguel</title>
 
 <script src="config.js"></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;800&family=Caveat:wght@500&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --azul:#2f6fb5;
-  --escuro:#1d3f6e;
-  --claro:#e8f2fc;
-  --ceu:#cfe4f7;
-  --suave:#5f7f9f;
-}
-
-* { box-sizing:border-box; }
-
-body {
-  margin:0;
-  font-family:Nunito,sans-serif;
-  color:var(--escuro);
-  line-height:1.5;
-  background:linear-gradient(180deg,#d9eafa,#eef6fd 45%,#fff);
-  min-height:100vh;
-}
-
-.topo {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  padding:10px 14px;
-  background:rgba(255,255,255,.9);
-  position:sticky;
-  top:0;
-  z-index:5;
-  flex-wrap:wrap;
-}
-
-.marca {
-  font-family:Pacifico,cursive;
-  font-size:1.35rem;
-  color:var(--escuro);
-}
-
-nav {
-  display:flex;
-  gap:4px;
-  overflow-x:auto;
-}
-
-nav button {
-  border:0;
-  background:none;
-  font:600 .95rem Nunito;
-  color:var(--escuro);
-  padding:8px 12px;
-  border-radius:999px;
-  cursor:pointer;
-  white-space:nowrap;
-}
-
-nav button.on {
-  background:var(--claro);
-  color:var(--azul);
-}
-
-main {
-  max-width:980px;
-  margin:auto;
-  padding:20px 16px 56px;
-}
-
-.pag { display:none; }
-.pag.on { display:block; }
-
-h1,h2 {
-  font-family:Pacifico,cursive;
-  font-weight:400;
-  margin:0;
-}
-
-.hero {
-  display:grid;
-  gap:24px;
-  align-items:center;
-  margin-top:8px;
-}
-
-@media(min-width:760px) {
-  .hero { grid-template-columns:1fr 1fr; }
-}
-
-.polaroid {
-  background:white;
-  padding:10px;
-  border-radius:6px;
-  box-shadow:0 6px 20px #1d3f6e33;
-  transform:rotate(-3deg);
-  max-width:340px;
-  margin:auto;
-}
-
-.foto {
-  width:100%;
-  aspect-ratio:1;
-  background:var(--ceu);
-  border-radius:4px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:var(--suave);
-  padding:8px;
-}
-
-.foto img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.hero h1 {
-  font-size:clamp(2.3rem,9vw,3.6rem);
-  line-height:1.1;
-}
-
-.frase {
-  font-family:Caveat,cursive;
-  font-size:1.7rem;
-  margin:8px 0 16px;
-  color:var(--azul);
-}
-
-.infos {
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.info {
-  background:white;
-  border-radius:14px;
-  padding:10px 14px;
-  text-align:center;
-  box-shadow:0 3px 10px #1d3f6e20;
-  min-width:104px;
-}
-
-.info b { display:block; }
-.info span { font-size:.85rem;color:var(--suave); }
-
-.pilula {
-  display:inline-block;
-  margin-top:18px;
-  background:var(--azul);
-  color:white;
-  padding:10px 18px;
-  border-radius:999px;
-}
-
-.titulo {
-  text-align:center;
-  margin:8px 0 18px;
-}
-
-.titulo h2 { font-size:1.9rem; }
-.titulo p { color:var(--suave); }
-
-.filtros {
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  justify-content:center;
-  padding-bottom:10px;
-  margin-bottom:14px;
-}
-
-.filtros button {
-  border:0;
-  background:white;
-  color:var(--escuro);
-  padding:7px 14px;
-  border-radius:999px;
-  cursor:pointer;
-  white-space:nowrap;
-}
-
-.filtros button.on {
-  background:var(--azul);
-  color:white;
-}
-
-.grade {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
-
-@media(min-width:700px) {
-  .grade { grid-template-columns:repeat(4,1fr); }
-}
-
-.item {
-  position:relative;
-  border:0;
-  padding:0;
-  background:none;
-  cursor:pointer;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 3px 10px #1d3f6e30;
-}
-
-.item .foto { aspect-ratio:3/4; }
-
-.item .tag {
-  position:absolute;
-  left:6px;
-  right:6px;
-  bottom:6px;
-  background:#ffffffed;
-  border-radius:8px;
-  padding:4px 8px;
-  font-size:.78rem;
-  font-weight:800;
-}
-
-.vazio {
-  text-align:center;
-  color:var(--suave);
-  padding:24px;
-  grid-column:1/-1;
-}
-
-.linha {
-  display:flex;
-  gap:6px;
-  overflow-x:auto;
-  padding:10px 4px 18px;
-}
-
-.marco {
-  flex:0 0 120px;
-  text-align:center;
-}
-
-.marco .bola {
-  width:64px;
-  height:64px;
-  border-radius:50%;
-  background:white;
-  border:3px solid var(--ceu);
-  margin:auto auto 8px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:1.8rem;
-}
-
-.marco b { display:block; }
-.marco small { color:var(--suave); }
-
-.momentos {
-  display:grid;
-  gap:12px;
-  grid-template-columns:1fr;
-}
-
-@media(min-width:640px) {
-  .momentos { grid-template-columns:1fr 1fr; }
-}
-
-.mom {
-  background:white;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 3px 10px #1d3f6e24;
-}
-
-.mom .foto { aspect-ratio:16/10; }
-
-.mom .t {
-  padding:10px 12px;
-  font-weight:800;
-}
-
-.mom small {
-  display:block;
-  font-weight:400;
-  color:var(--suave);
-}
-
-.carta {
-  background:#fffdf7;
-  border-radius:8px;
-  padding:26px 22px;
-  margin:0 auto 18px;
-  max-width:560px;
-  box-shadow:0 6px 18px #1d3f6e26;
-}
-
-.carta p {
-  font-family:Caveat,cursive;
-  font-size:1.55rem;
-}
-
-.carta .ass { text-align:right; }
-
-#lb {
-  position:fixed;
-  inset:0;
-  background:#0f1c28ed;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  padding:16px;
-  z-index:10;
-}
-
-#lb.on { display:flex; }
-
-#lb img {
-  max-width:100%;
-  max-height:78vh;
-  border-radius:6px;
-}
-
-#lb p { color:white; }
-
-#lb button {
-  position:absolute;
-  top:10px;
-  right:10px;
-  font-size:1.8rem;
-  background:none;
-  border:0;
-  color:white;
-}
-
-footer {
-  text-align:center;
-  color:var(--suave);
-  padding:20px;
-}
+:root{--azul:#2f6fb5;--escuro:#1d3f6e;--claro:#e8f2fc;--ceu:#cfe4f7;--suave:#5f7f9f}
+*{box-sizing:border-box}
+body{margin:0;font-family:Nunito,sans-serif;color:var(--escuro);line-height:1.5;background:linear-gradient(180deg,#d9eafa,#eef6fd 45%,#fff);min-height:100vh}
+.topo{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;background:rgba(255,255,255,.9);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+.marca{font-family:Pacifico,cursive;font-size:1.35rem;color:var(--escuro)}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav button{border:0;background:none;font:600 .95rem Nunito;color:var(--escuro);padding:8px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--claro);color:var(--azul)}
+main{max-width:980px;margin:auto;padding:20px 16px 56px}
+.pag{display:none}.pag.on{display:block}
+h1,h2{font-family:Pacifico,cursive;font-weight:400;margin:0}
+.hero{display:grid;gap:24px;align-items:center;margin-top:8px}
+@media(min-width:760px){.hero{grid-template-columns:1fr 1fr}}
+.polaroid{background:white;padding:10px;border-radius:6px;box-shadow:0 6px 20px #1d3f6e33;transform:rotate(-3deg);max-width:340px;margin:auto}
+.foto{width:100%;aspect-ratio:1;background:var(--ceu);border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--suave);padding:8px}
+.foto img{width:100%;height:100%;object-fit:cover;display:block}
+.hero h1{font-size:clamp(2.3rem,9vw,3.6rem);line-height:1.1}
+.frase{font-family:Caveat,cursive;font-size:1.7rem;margin:8px 0 16px;color:var(--azul)}
+.infos{display:flex;gap:10px;flex-wrap:wrap}
+.info{background:white;border-radius:14px;padding:10px 14px;text-align:center;box-shadow:0 3px 10px #1d3f6e20;min-width:104px}
+.info b{display:block}.info span{font-size:.85rem;color:var(--suave)}
+.pilula{display:inline-block;margin-top:18px;background:var(--azul);color:white;padding:10px 18px;border-radius:999px}
+.titulo{text-align:center;margin:8px 0 18px}.titulo h2{font-size:1.9rem}.titulo p{color:var(--suave)}
+.filtros{display:flex;gap:8px;overflow-x:auto;justify-content:center;padding-bottom:10px;margin-bottom:14px}
+.filtros button{border:0;background:white;color:var(--escuro);padding:7px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.filtros button.on{background:var(--azul);color:white}
+.grade{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:700px){.grade{grid-template-columns:repeat(4,1fr)}}
+.item{position:relative;border:0;padding:0;background:none;cursor:pointer;border-radius:12px;overflow:hidden;box-shadow:0 3px 10px #1d3f6e30}
+.item .foto{aspect-ratio:3/4}
+.item .tag{position:absolute;left:6px;right:6px;bottom:6px;background:#ffffffed;border-radius:8px;padding:4px 8px;font-size:.78rem;font-weight:800}
+.vazio{text-align:center;color:var(--suave);padding:24px;grid-column:1/-1}
+.linha{display:flex;gap:6px;overflow-x:auto;padding:10px 4px 18px}
+.marco{flex:0 0 120px;text-align:center}.marco .bola{width:64px;height:64px;border-radius:50%;background:white;border:3px solid var(--ceu);margin:auto auto 8px;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.marco b{display:block}.marco small{color:var(--suave)}
+.momentos{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:640px){.momentos{grid-template-columns:1fr 1fr}}
+.mom{background:white;border-radius:14px;overflow:hidden;box-shadow:0 3px 10px #1d3f6e24;cursor:pointer}
+.mom .foto{aspect-ratio:16/10}.mom .t{padding:10px 12px;font-weight:800}
+.mom small{display:block;font-weight:400;color:var(--suave)}
+.carta{background:#fffdf7;border-radius:8px;padding:26px 22px;margin:0 auto 18px;max-width:560px;box-shadow:0 6px 18px #1d3f6e26}
+.carta p{font-family:Caveat,cursive;font-size:1.55rem}.carta .ass{text-align:right}
+#lb{position:fixed;inset:0;background:#0f1c28ed;display:none;align-items:center;justify-content:center;flex-direction:column;padding:16px;z-index:10}
+#lb.on{display:flex}#lb img{max-width:100%;max-height:78vh;border-radius:6px;object-fit:contain}
+#lb p{color:white;text-align:center}
+#lb button{position:absolute;top:10px;right:10px;font-size:1.8rem;background:none;border:0;color:white;cursor:pointer}
+footer{text-align:center;color:var(--suave);padding:20px}
+.estado{grid-column:1/-1;text-align:center;padding:20px;color:var(--suave)}
 </style>
 </head>
-
 <body>
-
 <header class="topo">
   <div class="marca">🧸 Diário do Davi Miguel</div>
-
   <nav id="nav">
     <button data-p="inicio">🏠 Início</button>
     <button data-p="galeria">📷 Galeria</button>
@@ -368,353 +72,315 @@ footer {
 </header>
 
 <main>
-
 <section id="inicio" class="pag">
   <div class="hero">
-
-    <div class="polaroid">
-      <div class="foto" id="destaque">🧸 Carregando...</div>
-    </div>
-
+    <div class="polaroid"><div class="foto" id="destaque">🧸 Carregando...</div></div>
     <div>
       <h1>Diário do Davi Miguel</h1>
-
       <div class="frase">Cada sorriso, uma nova história!</div>
-
       <div class="infos">
-        <div class="info">
-          <span>Nascimento</span>
-          <b>29/04/2026</b>
-        </div>
-
-        <div class="info">
-          <span>Idade atual</span>
-          <b id="idade"></b>
-        </div>
-
-        <div class="info">
-          <span>Nosso amor</span>
-          <b>Sem fim! 💙</b>
-        </div>
+        <div class="info"><span>Nascimento</span><b>29/04/2026</b></div>
+        <div class="info"><span>Idade atual</span><b id="idade"></b></div>
+        <div class="info"><span>Nosso amor</span><b>Sem fim! 💙</b></div>
       </div>
-
-      <span class="pilula">
-        Bem-vindo ao nosso álbum de recordações! 💙
-      </span>
+      <span class="pilula">Bem-vindo ao nosso álbum de recordações! 💙</span>
     </div>
   </div>
 </section>
 
 <section id="galeria" class="pag">
-  <div class="titulo">
-    <h2>📷 Nossa Galeria</h2>
-    <p>Aqui estão as lembranças do Davi!</p>
-  </div>
-
+  <div class="titulo"><h2>📷 Nossa Galeria</h2><p>Aqui estão as lembranças do Davi!</p></div>
   <div class="filtros" id="filtros"></div>
-  <div class="grade" id="grade"></div>
+  <div class="grade" id="grade"><p class="estado">Carregando as fotos... 💙</p></div>
 </section>
 
 <section id="momentos" class="pag">
-
-  <div class="titulo">
-    <h2>⭐ Linha do Tempo</h2>
-    <p>Acompanhe o crescimento do nosso príncipe!</p>
-  </div>
-
+  <div class="titulo"><h2>⭐ Linha do Tempo</h2><p>Acompanhe o crescimento do nosso príncipe!</p></div>
   <div class="linha" id="linha"></div>
-
-  <div class="titulo" style="margin-top:20px">
-    <h2>Momentos Especiais</h2>
-    <p>Pequenas grandes conquistas!</p>
-  </div>
-
-  <div class="momentos" id="moms"></div>
+  <div class="titulo" style="margin-top:20px"><h2>Momentos Especiais</h2><p>Pequenas grandes conquistas!</p></div>
+  <div class="momentos" id="moms"><p class="estado">Carregando os momentos... 💙</p></div>
 </section>
 
 <section id="cartinhas" class="pag">
-  <div class="titulo">
-    <h2>💌 Cartinhas para o Futuro</h2>
-    <p>Mensagens dos pais para você, meu filho...</p>
-  </div>
-
+  <div class="titulo"><h2>💌 Cartinhas para o Futuro</h2><p>Mensagens dos pais para você, meu filho...</p></div>
   <div class="carta">
-    <p>Meu Davi,</p>
-    <p>Que Deus te abençoe sempre!</p>
+    <p>Meu Davi,</p><p>Que Deus te abençoe sempre!</p>
     <p>Aqui guardamos todo o nosso amor em cada detalhe desta fase tão especial da sua vida.</p>
-    <p>Você é a nossa maior alegria!</p>
-    <p class="ass">Com amor, Papai e Mamãe ❤️</p>
+    <p>Você é a nossa maior alegria!</p><p class="ass">Com amor, Papai e Mamãe ❤️</p>
   </div>
 </section>
-
 </main>
 
 <footer>Feito com 💙 por mamãe e papai</footer>
 
 <div id="lb">
-  <button id="fechar">×</button>
-  <img id="lbimg" alt="">
+  <button id="fechar" aria-label="Fechar">×</button>
+  <img id="lbimg" alt="Foto ampliada do Davi">
   <p id="lbcap"></p>
 </div>
 
 <script>
-var $ = id => document.getElementById(id);
+"use strict";
 
-var NASCIMENTO = "2026-04-29";
+const $ = id => document.getElementById(id);
+const NASCIMENTO = "2026-04-29";
+const PAGINAS = ["inicio","galeria","momentos","cartinhas"];
+let FOTOS = [];
+let MOMENTOS = [];
+let filtro = 0;
+let carregamentoEmAndamento = false;
 
 function idade() {
-  var n = new Date(NASCIMENTO + "T00:00:00");
-  var h = new Date();
-
-  var m = (h.getFullYear()-n.getFullYear())*12
-        + h.getMonth()-n.getMonth();
-
-  if(h.getDate() < n.getDate()) m--;
-
-  var ref = new Date(n.getFullYear(),n.getMonth()+m,n.getDate());
-  var d = Math.floor((h-ref)/86400000);
-
-  return m + (m===1?" mês e ":" meses e ") + d
-       + (d===1?" dia":" dias");
+  const n = new Date(NASCIMENTO + "T00:00:00");
+  const h = new Date();
+  let m = (h.getFullYear()-n.getFullYear())*12 + h.getMonth()-n.getMonth();
+  if (h.getDate() < n.getDate()) m--;
+  const ref = new Date(n.getFullYear(), n.getMonth()+m, n.getDate());
+  const d = Math.max(0, Math.floor((h-ref)/86400000));
+  return m + (m===1 ? " mês e " : " meses e ") + d + (d===1 ? " dia" : " dias");
 }
-
 $("idade").textContent = idade();
 
-var FOTOS = [];
-var filtro = 0;
+function validarConfig() {
+  if (!window.SUPABASE_URL || !window.SUPABASE_KEY) {
+    throw new Error("Configuração do Supabase ausente. Confira o arquivo config.js.");
+  }
+}
 
 function urlFoto(caminho) {
-  return window.SUPABASE_URL +
-    "/storage/v1/object/public/fotos/" +
-    encodeURIComponent(caminho);
+  // Codifica cada parte do caminho separadamente, preservando as barras das pastas.
+  const partes = String(caminho || "").split("/").map(parte => encodeURIComponent(parte));
+  return window.SUPABASE_URL.replace(/\/+$/,"") +
+    "/storage/v1/object/public/fotos/" + partes.join("/");
 }
 
 function carregarImagem(caixa, src, legenda) {
-  var img = new Image();
+  caixa.textContent = "Carregando foto...";
+  const img = document.createElement("img");
   img.alt = legenda || "Foto do Davi";
-  img.loading = "lazy";
-
-  img.onload = function() {
-    caixa.textContent = "";
-    caixa.appendChild(img);
-  };
-
-  img.onerror = function() {
+  img.decoding = "async";
+  img.loading = "eager";
+  img.onerror = () => {
     caixa.textContent = "Não foi possível carregar esta foto.";
+    console.error("Falha ao carregar imagem:", src);
   };
-
+  caixa.replaceChildren(img);
   img.src = src;
 }
 
 function dataBR(data) {
-  if(!data) return "";
-  return data.split("-").reverse().join("/");
+  if (!data) return "";
+  const partes = String(data).split("-");
+  return partes.length === 3 ? partes.reverse().join("/") : data;
+}
+
+function abrirFoto(src, legenda, data) {
+  $("lbimg").src = src;
+  $("lbcap").textContent = [legenda, dataBR(data)].filter(Boolean).join(" • ");
+  $("lb").classList.add("on");
 }
 
 function desenhaGaleria() {
-  var meses = [];
+  const meses = [...new Set(FOTOS.map(f => Number(f.mes)).filter(m => Number.isFinite(m) && m > 0))].sort((a,b)=>a-b);
+  const fl = $("filtros");
+  fl.replaceChildren();
 
-  FOTOS.forEach(function(f) {
-    if(meses.indexOf(f.mes) === -1) meses.push(f.mes);
-  });
-
-  meses.sort((a,b)=>a-b);
-
-  var fl = $("filtros");
-  fl.textContent = "";
-
-  [0].concat(meses).forEach(function(m) {
-    var b = document.createElement("button");
+  [0, ...meses].forEach(m => {
+    const b = document.createElement("button");
     b.textContent = m ? m + "º Mês" : "Todos";
-
-    if(m === filtro) b.className = "on";
-
-    b.onclick = function() {
-      filtro = m;
-      desenhaGaleria();
-    };
-
+    if (m === filtro) b.className = "on";
+    b.onclick = () => { filtro = m; desenhaGaleria(); };
     fl.appendChild(b);
   });
 
-  var g = $("grade");
-  g.textContent = "";
+  const g = $("grade");
+  g.replaceChildren();
+  const lista = FOTOS.filter(f => !filtro || Number(f.mes) === filtro);
 
-  var lista = FOTOS.filter(function(f) {
-    return !filtro || Number(f.mes) === filtro;
-  });
-
-  if(!lista.length) {
-    g.innerHTML = "<p class='vazio'>Ainda não há fotos neste mês.</p>";
+  if (!lista.length) {
+    const p = document.createElement("p");
+    p.className = "vazio";
+    p.textContent = "Ainda não há fotos neste mês. 💙";
+    g.appendChild(p);
     return;
   }
 
-  lista.forEach(function(f) {
-    var b = document.createElement("button");
+  lista.forEach(f => {
+    const b = document.createElement("button");
     b.className = "item";
     b.type = "button";
+    b.setAttribute("aria-label", "Abrir foto: " + (f.legenda || "Foto do Davi"));
 
-    var cx = document.createElement("div");
+    const cx = document.createElement("div");
     cx.className = "foto";
-
-    var tag = document.createElement("div");
+    const tag = document.createElement("div");
     tag.className = "tag";
-    tag.textContent = f.mes + "º Mês • " + dataBR(f.data_foto);
+    tag.textContent = (f.mes ? f.mes + "º Mês • " : "") + dataBR(f.data_foto);
 
-    b.appendChild(cx);
-    b.appendChild(tag);
-
-    carregarImagem(cx,f.src,f.legenda);
-
-    b.onclick = function() {
-      $("lbimg").src = f.src;
-      $("lbcap").textContent = f.legenda + " • " + dataBR(f.data_foto);
-      $("lb").classList.add("on");
-    };
-
+    b.append(cx, tag);
+    carregarImagem(cx, f.src, f.legenda);
+    b.onclick = () => abrirFoto(f.src, f.legenda, f.data_foto);
     g.appendChild(b);
   });
 }
 
 function desenhaMomentos(lista) {
-  var area = $("moms");
-  area.textContent = "";
+  const area = $("moms");
+  area.replaceChildren();
 
-  if(!lista.length) {
-    area.innerHTML = "<p class='vazio'>Ainda não há momentos especiais cadastrados. 💙</p>";
+  if (!lista.length) {
+    const p = document.createElement("p");
+    p.className = "vazio";
+    p.textContent = "Ainda não há momentos especiais cadastrados. 💙";
+    area.appendChild(p);
     return;
   }
 
-  lista.forEach(function(f) {
-    var d = document.createElement("div");
+  lista.forEach(f => {
+    const d = document.createElement("article");
     d.className = "mom";
+    d.tabIndex = 0;
+    d.setAttribute("role", "button");
+    d.setAttribute("aria-label", "Abrir momento: " + (f.legenda || "Momento especial"));
 
-    var cx = document.createElement("div");
+    const cx = document.createElement("div");
     cx.className = "foto";
-
-    var t = document.createElement("div");
+    const t = document.createElement("div");
     t.className = "t";
-    t.textContent = f.legenda || "Momento especial";
-
-    var s = document.createElement("small");
+    t.append(document.createTextNode(f.legenda || "Momento especial"));
+    const s = document.createElement("small");
     s.textContent = dataBR(f.data_foto);
-
     t.appendChild(s);
-    d.appendChild(cx);
-    d.appendChild(t);
+    d.append(cx, t);
+    carregarImagem(cx, f.src, f.legenda);
 
-    carregarImagem(cx,f.src,f.legenda);
+    const abrir = () => abrirFoto(f.src, f.legenda, f.data_foto);
+    d.addEventListener("click", abrir);
+    d.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); }
+    });
     area.appendChild(d);
   });
 }
 
-async function carregarFotos() {
-  try {
-    var resposta = await fetch(
-      window.SUPABASE_URL +
-      "/rest/v1/fotos?select=id,caminho,legenda,mes,data_foto,secao&order=data_foto.desc",
-      {
-        headers: {
-          apikey: window.SUPABASE_KEY,
-          Authorization: "Bearer " + window.SUPABASE_KEY
-        }
+function desenhaLinhaDoTempo() {
+  // Mantém o espaço da linha do tempo disponível para marcos cadastrados futuramente.
+  $("linha").replaceChildren();
+}
+
+async function buscarComTentativas(url, opcoes, tentativas = 3) {
+  let ultimoErro;
+  for (let tentativa = 1; tentativa <= tentativas; tentativa++) {
+    try {
+      const resposta = await fetch(url, { ...opcoes, cache: "no-store" });
+      if (!resposta.ok) {
+        const detalhe = await resposta.text().catch(() => "");
+        throw new Error("Supabase respondeu " + resposta.status + (detalhe ? ": " + detalhe : ""));
       }
-    );
-
-    if(!resposta.ok) {
-      throw new Error("Erro ao consultar o banco: " + resposta.status);
+      return resposta;
+    } catch (erro) {
+      ultimoErro = erro;
+      console.warn("Tentativa " + tentativa + " de " + tentativas + " falhou:", erro);
+      if (tentativa < tentativas) {
+        await new Promise(resolve => setTimeout(resolve, 700 * tentativa));
+      }
     }
+  }
+  throw ultimoErro || new Error("Não foi possível conectar ao Supabase.");
+}
 
-    var rows = await resposta.json();
+async function carregarFotos() {
+  if (carregamentoEmAndamento) return;
+  carregamentoEmAndamento = true;
+
+  try {
+    validarConfig();
+    const endpoint = window.SUPABASE_URL.replace(/\/+$/,"") +
+      "/rest/v1/fotos?select=id,caminho,legenda,mes,data_foto,secao&order=data_foto.desc";
+
+    const resposta = await buscarComTentativas(endpoint, {
+      headers: {
+        apikey: window.SUPABASE_KEY,
+        Authorization: "Bearer " + window.SUPABASE_KEY
+      }
+    }, 3);
+
+    const rows = await resposta.json();
+    if (!Array.isArray(rows)) throw new Error("O retorno do banco não está no formato esperado.");
 
     FOTOS = rows
-      .filter(f => !f.secao || f.secao === "galeria")
-      .map(function(f) {
-        return {
-          src: urlFoto(f.caminho),
-          mes: Number(f.mes),
-          data_foto: f.data_foto,
-          legenda: f.legenda || ""
-        };
-      });
+      .filter(f => (!f.secao || f.secao === "galeria") && f.caminho)
+      .map(f => ({
+        src: urlFoto(f.caminho),
+        mes: Number(f.mes) || 0,
+        data_foto: f.data_foto,
+        legenda: f.legenda || ""
+      }));
 
-    var momentos = rows
-      .filter(f => f.secao === "momentos")
-      .map(function(f) {
-        return {
-          src: urlFoto(f.caminho),
-          data_foto: f.data_foto,
-          legenda: f.legenda || ""
-        };
-      });
+    MOMENTOS = rows
+      .filter(f => f.secao === "momentos" && f.caminho)
+      .map(f => ({
+        src: urlFoto(f.caminho),
+        data_foto: f.data_foto,
+        legenda: f.legenda || ""
+      }));
 
     desenhaGaleria();
-    desenhaMomentos(momentos);
+    desenhaMomentos(MOMENTOS);
+    desenhaLinhaDoTempo();
 
-    if(FOTOS.length) {
-      carregarImagem(
-        $("destaque"),
-        FOTOS[0].src,
-        FOTOS[0].legenda
-      );
+    if (FOTOS.length) {
+      carregarImagem($("destaque"), FOTOS[0].src, FOTOS[0].legenda);
     } else {
       $("destaque").textContent = "As fotos aparecerão aqui 💙";
     }
-
-  } catch(erro) {
-    console.error(erro);
-    $("grade").innerHTML =
-      "<p class='vazio'>Não foi possível carregar as fotos. Verifique a conexão com o banco de dados.</p>";
-
-    $("moms").innerHTML =
-      "<p class='vazio'>Não foi possível carregar os momentos.</p>";
-
+  } catch (erro) {
+    console.error("Erro ao carregar dados do álbum:", erro);
+    $("grade").innerHTML = "<p class='vazio'>Não foi possível carregar as fotos agora. Tente novamente em instantes. 💙</p>";
+    $("moms").innerHTML = "<p class='vazio'>Não foi possível carregar os momentos agora. 💙</p>";
     $("destaque").textContent = "Não foi possível carregar a foto.";
+  } finally {
+    carregamentoEmAndamento = false;
   }
 }
 
-$("fechar").onclick = function() {
-  $("lb").classList.remove("on");
-  $("lbimg").src = "";
-};
-
-$("lb").onclick = function(e) {
-  if(e.target === $("lb")) $("lb").classList.remove("on");
-};
-
-document.addEventListener("keydown",function(e) {
-  if(e.key === "Escape") $("lb").classList.remove("on");
-});
-
-var paginas = ["inicio","galeria","momentos","cartinhas"];
-
 function ir(p) {
-  if(!paginas.includes(p)) p = "inicio";
-
-  paginas.forEach(function(x) {
-    $(x).classList.toggle("on",x===p);
-  });
-
-  Array.from($("nav").children).forEach(function(b) {
-    b.classList.toggle("on",b.dataset.p===p);
-  });
-
-  window.scrollTo(0,0);
+  if (!PAGINAS.includes(p)) p = "inicio";
+  PAGINAS.forEach(x => $(x).classList.toggle("on", x === p));
+  Array.from($("nav").children).forEach(b => b.classList.toggle("on", b.dataset.p === p));
+  window.scrollTo(0, 0);
 }
 
-Array.from($("nav").children).forEach(function(b) {
-  b.onclick = function() {
-    location.hash = b.dataset.p;
-  };
+Array.from($("nav").children).forEach(b => {
+  b.addEventListener("click", () => {
+    const destino = b.dataset.p;
+    if (location.hash === "#" + destino) ir(destino);
+    else location.hash = destino;
+  });
 });
 
-window.addEventListener("hashchange",function() {
-  ir(location.hash.slice(1));
+window.addEventListener("hashchange", () => ir(location.hash.slice(1)));
+
+$("fechar").addEventListener("click", () => {
+  $("lb").classList.remove("on");
+  $("lbimg").src = "";
+});
+$("lb").addEventListener("click", e => {
+  if (e.target === $("lb")) {
+    $("lb").classList.remove("on");
+    $("lbimg").src = "";
+  }
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    $("lb").classList.remove("on");
+    $("lbimg").src = "";
+  }
 });
 
+// Mostra a página correta primeiro; a busca de dados acontece em seguida.
 ir(location.hash.slice(1));
 carregarFotos();
 </script>
-
 </body>
 </html>
